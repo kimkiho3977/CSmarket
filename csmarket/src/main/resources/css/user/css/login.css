@@ -1,0 +1,90 @@
+html, body {
+  margin:0;
+  padding:0;
+  width:100vh;
+}
+
+body {
+  background-image: url("../../images/bg.png");
+  background-repeat: no-repeat;
+}
+
+
+* {
+  font-family: "Single Day", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+form {
+  width:350px;
+  margin-top:200px;
+  margin-left:590px;
+  float:left;
+}
+
+fieldset {
+  height:300px;
+  font-size:20px;
+  background:white;
+  border:2px solid #555273;
+  padding-top:50px;
+}
+
+legend {
+  font-size: 30px;
+}
+input {
+  border: 2px solid skyblue;
+  border-radius:5px;
+  font-size:25px;
+}
+
+button {
+  border:none;
+  border-radius:5px;
+  width:120px;
+  height:45px;
+  margin-top:30px;
+  margin-left:95px;
+  font-size:20px;
+  background:#FF6A89;
+  color:white;
+}
+
+button:hover {
+  background:#555273;
+}
+
+a{
+  font-size:17px;
+  margin-left:88px;
+  padding-top:20px;
+}
+
+div{
+  margin-top:10px;
+}
+
+#logo {
+  float:left;
+  margin-top: 100px;
+  margin-left: 650px;
+  margin-bottom: -150px;
+}
+
+#logo2 {
+  float:left;
+  font-size:60px;
+  margin-left:860px;
+  margin-right:-500px;
+  margin-top:37px;
+  margin-bottom: -150px;
+}
+
+#picture{
+  float:right;
+  margin-right:-400px;
+  margin-top: 219px;
+  border-radius: 10px;
+}

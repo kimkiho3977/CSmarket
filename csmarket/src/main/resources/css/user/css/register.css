@@ -1,0 +1,84 @@
+html, body {
+    margin:0;
+    padding:0;
+    width:900px;
+}
+
+body {
+    background-image: url("../../images/bg.png"), url("../../images/bg2.png");;
+    background-repeat: no-repeat;
+    background-position: 0px 0px, 0px 1050px;
+}
+
+
+* {
+    font-family: "Single Day", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+form {
+    width:400px;
+    margin-top:25%;
+    margin-left:83%;
+    float:left;
+}
+
+fieldset {
+    font-size:20px;
+    background:white;
+    border:2px solid #555273;
+    padding: 20px 100px;
+    margin-bottom:100px;
+}
+
+legend {
+    font-size: 30px;
+}
+input {
+    border: 2px solid skyblue;
+    border-radius:5px;
+    font-size:25px;
+}
+
+button {
+    border:none;
+    border-radius:5px;
+    width:120px;
+    height:45px;
+    margin-top:30px;
+    margin-left:60px;
+    font-size:20px;
+    background:#FF6A89;
+    color:white;
+}
+
+button:hover {
+    background:#555273;
+}
+
+a{
+    font-size:17px;
+    margin-left:50px;
+    padding-top:20px;
+}
+
+div{
+    margin-top:10px;
+}
+
+#logo {
+    float:left;
+    margin-top: 5%;
+    margin-left: 650px;
+    margin-bottom:-20%;
+}
+
+#logo2 {
+    float:left;
+    margin-top:7.5%;
+    margin-left: 840px;
+    margin-bottom:-20%;
+    font-size:60px;
+    width:500px;
+}

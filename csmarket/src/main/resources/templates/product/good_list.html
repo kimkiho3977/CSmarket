@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>어베인 인터내셔널</title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'product/css/goods_l.css' %}">
+    <script src="https://kit.fontawesome.com/3bd3b14c33.js" crossorigin="anonymous"></script>
+</head>
+
+  
+
+<body>
+    {% load static %}
+    <div id="logo">
+        <a href="{% url 'home'%}">
+            <img id="product" src="{% static 'images/logo.png' %}" width="200" height="200">
+        </a>
+    </div>
+    <div id="box">
+        <form id="searchbox" action="{% url 'search' %}" method="get">
+            <input id="searchtxt" type="text" name="q" value="{{ query }}" placeholder="상품명을 입력해 주세요.">
+            <button id="searchbtn" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+    </div>
+    <header id="headbar">
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">로그아웃</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}" >로그인</a></li>
+            {% endif %}
+            <li><a href="{% url 'signup' %}"  >회원가입</a></li>
+            <li><a href="{% url 'cart_detail' %}"  >장바구니</a></li>
+            <li><a href="{% url 'profile' %}"  >마이페이지</a></li>
+
+        </ul>
+    </header>
+    <br><br><br><br>
+    <nav>
+        <hr id="main-line">
+    </nav>
+    <div style="clear:both"></div>
+    <br><br>
+    <div id="menu">
+        <ul id="inline-grid">
+            <li><a href="{% url 'desktop' %}"  >데스크탑</a> </li>
+            <li><a href="{% url 'laptop_tablet' %}"  >노트북/태블릿</a></li>        
+            <li><a href="{% url 'monitor' %}"  >모니터</a></li>        
+            <li><a href="{% url 'component' %}"  >컴퓨터 부품</a></li>       
+            <li><a href="{% url 'keyboard_mouse' %}"  >키보드/마우스</a></li>        
+            <li><a href="{% url 'network' %}"  >네트워크/케이블</a></li>       
+            <li><a href="{% url 'printer' %}"  >프린터</a></li>        
+            <li><a href="{% url 'Apple' %}"  >Apple</a></li>
+        </ul>      
+    </div>
+    <br><br>
+
+    <div class="container">
+        <div>
+            <a href="?{% if query %}q={{ query }}&{% endif %}sort=name">이름순</a>
+            <a href="?{% if query %}q={{ query }}&{% endif %}sort=price">가격순</a>
+            <a href="?{% if query %}q={{ query }}&{% endif %}sort=-price">가격 역순</a>
+        </div>
+        <div class="row">
+            {% for good in page_obj %}
+            <div class="col-sm-6">
+                <div class="card_mb-3">
+                    <span class="embed-responsive embed-responsive-4by3">
+                        <img class="card-img-top" src="{{ good.image.url }}" width="150" height="150"
+                            alt="{{ good }}" />
+                    </span>
+                    <span class="card-body">
+                        <h2 class="card-title h4">{{ good.name }}</h2>
+                        <div class="badge-bg-outline-dark-float-right">카테고리: {{ good.category }}</div>
+                        <div class="badge-bg-outline-dark-float-right">가격: {{ good.price }}원</div>
+                        <a class="description" href="{% url 'detail' goods_id=good.id %}">상세설명보기</a>
+                    </span>
+                    <div class="card-footer">
+                        <div class="small text-muted"></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1&sort={{ sort_by }}{% if query %}&q={{ query }}{% endif %}">처음</a>
+                <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort_by }}{% if query %}&q={{ query }}{% endif %}">이전</a>
+            {% else %}
+                <span>처음</span>
+                <span>이전</span>
+            {% endif %}
+
+            <span class="current">
+                {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&sort={{ sort_by }}{% if query %}&q={{ query }}{% endif %}">다음</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&sort={{ sort_by }}{% if query %}&q={{ query }}{% endif %}">끝</a>
+            {% else %}
+                <span>다음</span>
+                <span>끝</span>
+            {% endif %}
+        </span>
+    </div>
+    <footer>
+        위치: 대구광역시 북구 대현동 214-6 파크밸리 2층<br>
+        대표자: 박지상 &nbsp;&nbsp;&nbsp;&nbsp;전화번호: 010-7539-1886<br>
+        문의: solgryn1027@gmail.com
+    </footer>
+</body>
+
+</html> 

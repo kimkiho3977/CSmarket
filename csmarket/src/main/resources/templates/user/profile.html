@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>어베인 인터내셔널</title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{%static 'user/css/mypage.css' %}">
+    <script src="https://kit.fontawesome.com/3bd3b14c33.js" crossorigin="anonymous"></script>
+</head>
+
+  
+
+<body>
+    {%load static%}
+    <div id="logo">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" width="200" height="200">
+        </a>
+    </div>
+    <div id="box">
+        <form id="searchbox">
+            <input id="searchtxt" type="text" placeholder="상품명을 입력해 주세요.">
+            <button id="searchbtn" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+    </div>
+    <header id="headbar">
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}"  >로그아웃</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}"  >로그인</a></li>
+            {% endif %}
+            <li><a href="{% url 'signup' %}"  >회원가입</a></li>
+            <li><a href="{% url 'cart_detail' %}"  >장바구니</a></li>
+            <li><a href="{% url 'profile' %}"  >마이페이지</a></li>
+        </ul>
+    </header>
+    <div style="clear:both"></div>
+    <br><br>
+    <div id="menu">
+        <ul id="inline-grid">
+            <li><a href="{% url 'desktop' %}"  >데스크탑</a> </li>
+            <li><a href="{% url 'laptop_tablet' %}"  >노트북/태블릿</a></li>        
+            <li><a href="{% url 'monitor' %}"  >모니터</a></li>        
+            <li><a href="{% url 'component' %}"  >컴퓨터 부품</a></li>       
+            <li><a href="{% url 'keyboard_mouse' %}"  >키보드/마우스</a></li>        
+            <li><a href="{% url 'network' %}"  >네트워크/케이블</a></li>       
+            <li><a href="{% url 'printer' %}"  >프린터</a></li>        
+            <li><a href="{% url 'Apple' %}"  >Apple</a></li>
+        </ul>      
+    </div>
+    <br><br>
+    <nav>
+        <hr id="main-line">
+    </nav>
+    <br>
+    <div id="mypage-content">
+      <div id="side-menu">
+          <h1>사이드 메뉴</h1>
+          <ul>
+              <li><a href="#">개인 정보 수정</a></li>
+              <li><a href="#">주문 내역</a></li>
+              <li><a href="#">배송지 관리</a></li>
+          </ul>
+      </div>
+      <div class="container">
+        <h2>사용자 이름: {{current_user.username}}</h2>
+        <h2>이메일: {{current_user.email}}</h2>
+        <h2>전화번호: {{current_user.contact_number}}</h2>
+        <br><br>
+        <form action="{% url 'update_profile' %}" method="post">
+            {% csrf_token %}
+            <label for="email">E-mail 변경: </label>
+            <input type="email" id="email" name="email" value="{{ current_user.email }}" required>
+    
+            <label for="contact_number">전화번호 변경: </label>
+            <input type="text" id="contact_number" name="contact_number" value="{{ current_user.contact_number }}" required>
+    
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+  </div>
+
+    <footer>
+        위치: 대구광역시 북구 대현동 214-6 파크밸리 2층<br>
+        대표자: 박지상 &nbsp;&nbsp;&nbsp;&nbsp;전화번호: 010-7539-1886<br>
+        문의: solgryn1027@gmail.com
+    </footer>
+</body>
+</html> 

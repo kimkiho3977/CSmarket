@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static%}
+    <title>Payment Request</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'cart/css/payment.css' %}">
+</head>
+<body>
+    
+    <h1>{{total_amount}}원 결제 요청</h1>
+    <button id="payment-button">결제하기</button>
+    <script type="application/json" id="purchased-items">
+        {{ purchased_items|safe }}
+    </script>
+
+    <script type="text/javascript">
+        var IMP = window.IMP;
+        IMP.init('imp74808386');  // 가맹점 식별코드
+
+        
+        document.getElementById('payment-button').onclick = function() {
+
+            var totalAmount = {{total_amount}};
+            var purchasedItems = JSON.parse(document.getElementById('purchased-items').textContent)
+
+            if (totalAmount === 0) {
+                alert('0임 ㅅㄱ');
+                return;
+            }
+
+            var productNames = Object.values(purchasedItems).map(function(item){
+                return item.name;
+            });
+
+            var displayName;
+            if (productNames.length === 1) {
+                displayName = productNames[0];
+            } else {
+                displayName = productNames[0] + '외' + (productNames.length - 1) + '개';
+            }
+
+            IMP.request_pay({
+                pg : 'nice',
+                pay_method : 'card',
+                merchant_uid : 'merchant_' + new Date().getTime(),
+                name : displayName,
+                amount : totalAmount,
+                buyer_email : 'iamport@siot.do',
+                buyer_name : '구매자이름',
+                buyer_tel : '010-1234-5678',
+                buyer_addr : '서울특별시 강남구 삼성동',
+                buyer_postcode : '123-456'
+            }, function(rsp) {
+                console.log(rsp);
+                if (rsp.success) {
+                    console.log('결제가 성공적으로 완료되었습니다.');
+                    location.href = '/cart/complete/';
+                } else {
+                    alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
+                }
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>어베인 인터내셔널</title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'home/css/main.css' %}">
+    <script src="https://kit.fontawesome.com/3bd3b14c33.js" crossorigin="anonymous"></script>
+</head>
+
+  
+
+<body>
+    {% load static %}
+    <div id="logo">
+        <a href="{% url 'home'%}">
+            <img src="{% static 'images/logo.png' %}" width="200" height="200">
+        </a>
+    </div>
+    <div id="box">
+        <form id="searchbox" action="{% url 'search' %}" method="get">
+            <input id="searchtxt" type="text" name="q" value="{{ query }}" placeholder="상품명을 입력해 주세요.">
+            <button id="searchbtn" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+    </div>
+    <header id="headbar">
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" >로그아웃</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}" >로그인</a></li>
+            {% endif %}
+            <li><a href="{% url 'signup' %}" >회원가입</a></li>
+            <li><a href="{% url 'cart_detail' %}" >장바구니</a></li>
+            <li><a href="{% url 'profile' %}" >마이페이지</a></li>
+
+        </ul>
+    </header>
+    <div style="clear:both"></div>
+    <br><br>
+     <div id="menu">
+        <ul id="inline-grid">
+            <li><a href="{% url 'desktop' %}"  >데스크탑</a> </li>
+            <li><a href="{% url 'laptop_tablet' %}"  >노트북/태블릿</a></li>        
+            <li><a href="{% url 'monitor' %}"  >모니터</a></li>        
+            <li><a href="{% url 'component' %}"  >컴퓨터 부품</a></li>       
+            <li><a href="{% url 'keyboard_mouse' %}"  >키보드/마우스</a></li>        
+            <li><a href="{% url 'network' %}"  >네트워크/케이블</a></li>       
+            <li><a href="{% url 'printer' %}"  >프린터</a></li>        
+            <li><a href="{% url 'Apple' %}"  >Apple</a></li> 
+        </ul>      
+    </div>
+    <br><br>
+    <nav>
+        <br>
+        <hr>
+    </nav>
+    <br><br>
+    <section>
+        <div id="article">
+            <div id="community">
+                <p>&nbsp;커뮤니티</p>
+                <a id="plus" href="{% url 'community' %}">-></a>
+            </div><br>
+            <iframe src="https://wikidocs.net/" name="left" width="100%" height="950"
+                style="border:2px solid black"></iframe>
+        </div>
+        <div id="aside">
+            <img id="picture" src="{% static 'images/shop1.png' %}" width="100%" height="500">
+            <img id="picture" src="{% static 'images/shop2.png' %}" width="100%" height="500">
+        </div>
+        <div style="clear:both;"></div>
+    </section>
+    <br>
+    <div id="banner">
+        <a href="https://www.youtube.com/@knu_baduk">
+            <img src="{% static 'images/banner2.jpg' %}" width="100%" height="200">
+        </a>
+    </div>
+    <br><br>
+    <footer>
+        위치: 대구광역시 북구 대현동 블루힐 105호<br>
+        대표자: 김건희 &nbsp;&nbsp;&nbsp;&nbsp;전화번호: 010-2656-6970<br>
+        문의: anakin0012@gmail.com
+    </footer>
+</body>
+
+</html>

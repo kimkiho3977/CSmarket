@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>어베인 인터내셔널</title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'board/css/post_detail.css' %}">
+    <script src="https://kit.fontawesome.com/3bd3b14c33.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {% load static %}
+    <div id="logo">
+        <a href="{% url 'community' %}">
+            <img src="{% static 'images/logo.png' %}" width="200" height="200">
+        </a>
+    </div>
+    <div id="title">커뮤니티</div>
+    <div id="box">
+        <form id="searchbox">
+            <input id="searchtxt" type="text" placeholder="키워드를 입력해 주세요.">
+            <button id="searchbtn" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+    </div>
+    <div style="clear:both"></div>
+    <br><br>
+    <nav>
+        <br>
+        <hr id="main-line">
+    </nav>
+    <br><br>
+    <div class="post_detail">
+        <h1>{{ post.title }}</h1>
+        <hr>
+        <p>{{ post.content }}</p>
+        <p id="date">{{ post.created_at }}</p>
+    </div>
+    <a id="tolist" href="{% url 'community' %}"><- 목록으로</a>
+    <footer>
+        위치: 대구광역시 북구 대현동 214-6 파크밸리 2층<br>
+        대표자: 박지상 &nbsp;&nbsp;&nbsp;&nbsp;전화번호: 010-7539-1886<br>
+        문의: solgryn1027@gmail.com
+    </footer>
+</body>
+
+</html>
